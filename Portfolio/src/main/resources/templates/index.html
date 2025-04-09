@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio de Proyectos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>        .project-card {
+        transition: transform 0.3s ease;
+        margin-bottom: 20px;
+    }
+
+    .project-card:hover {
+        transform: scale(1.05);
+    }
+
+    .project-image {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .project-title {
+        text-align: center;
+        margin-top: 10px;
+        font-weight: bold;
+    }    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <header class="text-center mb-5"><h1>Portfolio de Proyectos</h1>
+        <p class="lead">Proyectos realizados durante el curso</p></header>
+    <div class="row">        <!-- Recorremos la lista de proyectos usando th:each -->
+        <div class="col-md-4 mb-4" th:each="proyecto : ${proyectos}">
+            <div class="project-card"><a th:href="@{'/proyecto/' + ${proyecto.idProyecto}}"> <img class="project-image"
+                                                                                                  th:src="@{${proyecto.imagen}}"
+                                                                                                  th:alt="${proyecto.nombre}">
+                <div class="project-title" th:text="${proyecto.nombre}"></div>
+            </a></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
